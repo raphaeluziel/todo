@@ -30,10 +30,10 @@ function newTodo() {
     checkBox.id = 'checkbox' + numItems
     checkBox.addEventListener('click', function(){
       if (checkBox.checked){
-        checkedItems = parseInt(uncheckedCountSpan.innerHTML) - 1
+        checkedItems = parseInt(uncheckedCountSpan.innerHTML) + 1
       }
       else{
-        checkedItems = parseInt(uncheckedCountSpan.innerHTML) + 1
+        checkedItems = parseInt(uncheckedCountSpan.innerHTML) - 1
       }
       uncheckedCountSpan.innerHTML = checkedItems
     })
@@ -48,11 +48,30 @@ function newTodo() {
 
     const li = document.createElement('li')
     li.className = classNames.TODO_ITEM
+    li.id = 'listItem' + numItems
     li.appendChild(checkBox)
     li.appendChild(checkBoxLabel)
 
-    list.append(li)
+    const button = document.createElement('button')
+    button.innerHTML = 'delete'
+    button.className = classNames.TODO_DELETE + 'btn btn-danger btn-sm'
+    button.addEventListener('click', function(){
+      if (!document.getElementById('checkbox' + numItems).checked){
+        checkedItems--
+      }
+      document.getElementById('listItem' + numItems).remove()
+      numItems--
+      itemCountSpan.innerHTML = numItems
+      uncheckedCountSpan.innerHTML = checkedItems
+    })
+
+    li.appendChild(button)
+
+    list.appendChild(li)
     itemCountSpan.innerHTML = numItems
+    uncheckedCountSpan.innerHTML = checkedItems
+
+
   }
 
 
