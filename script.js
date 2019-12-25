@@ -62,12 +62,10 @@ function newTodo() {
       // If the item to be deleted was not checked, decrease number
       // of items that are unchecked
       if (!document.getElementById('checkbox' + numItems).checked){
-        console.log("removing unchecked")
         uncheckedItems--
       }
       // When button is clicked, delete the whole item, and update counts
       document.getElementById('listItem' + numItems).remove()
-      console.log("removing anything")
       numItems--
 
       // Update the view
